@@ -26,6 +26,13 @@ def get_text(line_number: int) -> str:
         return line
 
 
+def create_return_button():
+    return_button = types.InlineKeyboardMarkup()
+    return_button.add(types.InlineKeyboardButton("Назад",
+                                                 callback_data="to_styles"))
+    return return_button
+
+
 @bot.message_handler(commands=["start"])
 def greeting(message):
     markup = types.InlineKeyboardMarkup()
@@ -41,29 +48,60 @@ def go_to_styles(callback):
         styles_menu.add(types.InlineKeyboardButton(get_styles()[0],
                                                    callback_data="style_1"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[1],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_2"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[2],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_3"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[3],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_4"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[4],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_5"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[5],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_6"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[6],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_7"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[7],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_8"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[8],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_9"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[9],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_10"))
         styles_menu.add(types.InlineKeyboardButton(get_styles()[10],
-                                                   callback_data="to_styles"))
+                                                   callback_data="style_11"))
         bot.send_message(callback.message.chat.id,
                          "Выбор стилей", reply_markup=styles_menu)
     elif callback.data == "style_1":
-        bot.send_message(callback.message.chat.id, get_text(0))
+        bot.send_message(callback.message.chat.id, get_text(0),
+                         reply_markup=create_return_button())
+    elif callback.data == "style_2":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_3":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_4":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_5":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_6":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_7":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_8":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_9":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_10":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
+    elif callback.data == "style_11":
+        bot.send_message(callback.message.chat.id, "lorem ipsum",
+                         reply_markup=create_return_button())
 
 
 bot.polling(none_stop=True)
