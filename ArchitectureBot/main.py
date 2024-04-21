@@ -21,18 +21,15 @@ def greet(message) -> None:
 
 @bot.callback_query_handler(func=lambda callback: True)
 def go_to_styles(callback) -> None:
-    match callback.data:
-        case "to_styles":
-            styles_menu = types.InlineKeyboardMarkup()
-            for i in range(11):
-                create_style_button(styles_menu, i)
-            bot.send_message(callback.message.chat.id,
-                             "Выбор стилей",
-                             reply_markup=styles_menu)
-        case "style_1":
-            send_style_info("wooden", callback, bot)
-        case "style_2":
-            send_style_info("peter", callback, bot)
+    if callback.data == "to_styles":
+        styles_menu = types.InlineKeyboardMarkup()
+        for i in range(11):
+            create_style_button(styles_menu, i)
+        bot.send_message(callback.message.chat.id,
+                         "Выбор стилей",
+                         reply_markup=styles_menu)
+    else:
+        send_style_info(callback.data, callback, bot)
 
 
 bot.polling(none_stop=True)
