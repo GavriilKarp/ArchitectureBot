@@ -15,7 +15,7 @@ def greet(message) -> None:
     to_styles_button = types.InlineKeyboardMarkup()
     to_styles_button.add(types.InlineKeyboardButton("К стилям",
                          callback_data="to_styles"))
-    bot.send_message(message.chat.id, "lorem ipsum",
+    bot.send_message(message.chat.id, get_text("greeting"),
                      reply_markup=to_styles_button)
 
 
@@ -25,9 +25,8 @@ def go_to_styles(callback) -> None:
         styles_menu = types.InlineKeyboardMarkup()
         for i in range(11):
             create_style_button(styles_menu, i)
-        bot.send_message(callback.message.chat.id,
-                         "Выбор стилей",
-                         reply_markup=styles_menu)
+        bot.send_message(callback.message.chat.id, get_text("styles_list"),
+                         reply_markup=styles_menu, parse_mode="html")
     else:
         send_style_info(callback.data, callback, bot)
 
